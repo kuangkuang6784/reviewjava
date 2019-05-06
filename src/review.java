@@ -22,7 +22,7 @@ public class review{
     }
 
     //可变参数
-    public static void printMax(double... numbers){
+    private static void printMax(double... numbers){
         if(numbers.length == 0){
             System.out.println("No argument passed");
             return;
@@ -38,9 +38,30 @@ public class review{
         System.out.println("The max value is " + result);
     }
 
+    //删除目录
+    private static void deleteFolder(File folder){
+        File[] files = folder.listFiles();
+        if(files != null) {
+            for(File f : files){
+                if (f.isDirectory()){
+                    deleteFolder(f);
+                } else {
+                    f.delete();
+                }
+            }
+        }
+        folder.delete();
+    }
+
+
+
     //public static void main(String args[]){
     public static void main(String args[])throws IOException{
         //System.out.println("test1");
+
+
+
+
 
         //Number类型
         /*
@@ -49,6 +70,11 @@ public class review{
         System.out.println(x);
         */
 
+
+
+
+
+
         //for-each循环
         /*
         double[] testList = {1.9, 2.9, 3.4, 3.5};
@@ -56,15 +82,20 @@ public class review{
             System.out.println(a);
         */
 
+
+
+
         /*
         int[] a = new int[]{8,4,2,1};
         //数组作为函数参数
         printArray(a);
-
         //数组作为返回值
         int[] b = reverse(a);
         printArray(b);
         */
+
+
+
 
         /*
         //获取日期时间
@@ -75,11 +106,21 @@ public class review{
         System.out.println(ft.format(date));
         */
 
+
+
+
+
         //可变参数
         /*
         printMax(34, 3, 3, 2, 56.5);
         printMax(new double[]{1, 2, 3});
         */
+
+
+
+
+
+
 
         /*
         //使用 BufferedReader 在控制台读取字符
@@ -93,6 +134,9 @@ public class review{
             System.out.println(c);
         } while (c != 'q');
         */
+
+
+
 
         //文件读写
         //File f = new File("../resource/test.txt");
@@ -118,6 +162,9 @@ public class review{
             System.out.print("Exception");
         }
         */
+
+        /*
+        //解决乱码问题
         File f = new File("resource/test2.txt");
         FileOutputStream fop = new FileOutputStream(f);
         // 构建FileOutputStream对象,文件不存在会自动新建
@@ -157,6 +204,78 @@ public class review{
 
         fip.close();
         // 关闭输入流,释放系统资源
+        */
+
+
+
+        /*
+        //对目录的操作
+        //创建目录
+        String dirname = "resource/dir1";
+        File d = new File(dirname);
+        d.mkdirs();
+        System.out.println("创建了目录" + dirname);
+
+        //读取目录
+        String dirname2 = "resource";
+        File f1 = new File(dirname2);
+        if(f1.isDirectory()) {
+            System.out.println("目录" + dirname2);
+            String[] s = f1.list();
+            for (int i = 0; i < s.length; i++) {
+                File f = new File(dirname2 + "/" + s[i]);
+                if(f.isDirectory()){
+                    System.out.println(s[i] + "是一个目录");
+                } else {
+                    System.out.println(s[i] + "是一个文件");
+                }
+            }
+        } else {
+            System.out.println(dirname2 + "不是一个目录");
+        }
+
+
+        //删除目录
+        //File folder = new File("resource");
+        deleteFolder(d);
+        System.out.println("删除了目录" + dirname);
+        */
+
+
+
+        //使用Scanner类进行输入
+        /*next方法
+         *1、一定要读取到有效字符后才可以结束输入。
+         *2、对输入有效字符之前遇到的空白，next() 方法会自动将其去掉。
+         *3、只有输入有效字符后才将其后面输入的空白作为分隔符或者结束符。
+         *next() 不能得到带有空格的字符串。
+         */
+        /*
+        Scanner scan = new Scanner(System.in);
+        System.out.println("next方式接收");
+        if(scan.hasNext()){
+            String str1 = scan.next();
+            System.out.println("输入的数据为:" + str1);
+        }
+        scan.close();
+
+         */
+
+        /*nextLine()方法
+         *1、以Enter为结束符,也就是说 nextLine()方法返回的是输入回车之前的所有字符。
+         *2、可以获得空白。
+         */
+        Scanner scan = new Scanner(System.in);
+        System.out.println("nextLine方式接收");
+        if(scan.hasNextLine()){
+            String str2 = scan.nextLine();
+            System.out.println("输入的数据为:" + str2);
+        }
+        scan.close();
+
+
+
+
 
     }
 }
